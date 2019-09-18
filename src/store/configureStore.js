@@ -8,8 +8,8 @@ import initialState from "./initialState";
 
 const configireStore = () => {
   const middlewares = [thunk];
-  // const savedState = loadState() || initialState;
-  const savedState = initialState;
+  const savedState = loadState() || initialState;
+  // const savedState = initialState;
 
   const composeEnhancers =
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -23,7 +23,7 @@ const configireStore = () => {
   //OPTIONAL:: save state to localStorage, atmost once every second
   store.subscribe(
     throttle(() => {
-      // saveState(store.getState());
+      saveState(store.getState());
     }, 1000)
   );
   return store;
