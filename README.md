@@ -1,8 +1,28 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+How to Run:
+
+```
+clone from this repository
+    - git@github.com:upkarDroid/musicsearch.git
+
+cd musicsearch
+yarn install
+yarn start
+
+//presst CMD+T to open new terminal tab
+node apiMiddleware.js
+
+Goto: https://localhost:3000
+```
+
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `node apiMiddleware.js`
+
+Run this before runig anything else in the project. This creates an API middleware to handle CORs issue in itunes API ( due to localhost)
 
 ### `npm start`
 

@@ -11,7 +11,6 @@ const SearchInput = ({ srchString, fetchResults, isFetching }) => {
 
   const handleClick = e => {
     e.preventDefault();
-    debugger;
     fetchResults(searchVal);
   };
   return (
