@@ -29,6 +29,8 @@ const fetchResultsAction = searchTerm => {
     dispatch(setSearchTerm(searchTerm));
     dispatch(isFetchingAction(true));
     dispatch(errorAction(false));
+    //clear previous results
+    dispatch(fetchResultsSuccess([]));
 
     fetch(`http://localhost:3002/search/${encodeURIComponent(searchTerm)}`, {
       method: "GET"
@@ -38,12 +40,17 @@ const fetchResultsAction = searchTerm => {
       .then(response => {
         // const response = JSON.parse(responseText);
         dispatch(isFetchingAction(false));
-        dispatch(fetchResultsSuccess(response.results));
+
+        if (Array.isArray(response.results) && response.results.length > 0) {
+          dispatch(fetchResultsSuccess(response.results));
+        } else {
+          dispatch(errorAction(true));
+        }
       })
       .catch(error => {
         console.log(error, error);
         dispatch(isFetchingAction(false));
-        dispatch(errorAction(false));
+        dispatch(errorAction(true));
       });
   };
 };

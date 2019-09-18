@@ -4,10 +4,10 @@ import ResultItem from "./ResultItem";
 import Spinner from "../Spinner";
 import "./searchResults.css";
 
-const SearchResults = ({ allResults, isFetching }) => {
+const SearchResults = ({ allResults, isFetching, error = false }) => {
   // currently we are displaying first 10 results out of 200
   //TODO:: implement pagination locally, as API does not support pagination
-  const renderedResults = allResults.length ? (
+  const renderedResults = !error ? (
     allResults
       .slice(0, 10)
       .map((result, index) => (
