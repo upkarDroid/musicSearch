@@ -6,6 +6,7 @@ import {
 } from "./results";
 
 import isFetchingAction from "./isFetchingAction";
+import errorAction from "./errorAction";
 
 import { setSearchTerm } from "./searchInput";
 
@@ -27,19 +28,13 @@ const fetchResultsAction = searchTerm => {
   return dispatch => {
     dispatch(setSearchTerm(searchTerm));
     dispatch(isFetchingAction(true));
+    dispatch(errorAction(false));
 
     fetch(`http://localhost:3002/search/${encodeURIComponent(searchTerm)}`, {
       method: "GET"
-      // mode: "no-cors",
-      // headers: new Headers({
-      //   "Content-Type": "application/json",
-      //   Accept: "application/json"
-      // })
     })
       .then(checkStatus)
-      .then(response => {
-        return response.json();
-      })
+      .then(parseJSON)
       .then(response => {
         // const response = JSON.parse(responseText);
         dispatch(isFetchingAction(false));
@@ -48,7 +43,7 @@ const fetchResultsAction = searchTerm => {
       .catch(error => {
         console.log(error, error);
         dispatch(isFetchingAction(false));
-        dispatch(fetchResultsError());
+        dispatch(errorAction(false));
       });
   };
 };

@@ -1,8 +1,8 @@
 const initialState = {
-  searchTerm: "senorita",
+  searchTerm: "",
   //   resultsShown: [],
   isFetching: false,
-  //   error: false,
+  error: false,
   allResults: []
 };
 

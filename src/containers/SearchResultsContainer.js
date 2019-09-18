@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import SearchResultsComponent from "../components/SearchResults/SearchResults";
 
-const mapStateToProps = state => ({
-  allResults: state.allResults
+const mapStateToProps = ({ allResults, isFetching }) => ({
+  allResults,
+  isFetching
 });
 
 export default connect(mapStateToProps)(SearchResultsComponent);

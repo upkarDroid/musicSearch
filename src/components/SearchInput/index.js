@@ -13,6 +13,13 @@ const SearchInput = ({ srchString, fetchResults, isFetching }) => {
     e.preventDefault();
     fetchResults(searchVal);
   };
+
+  const handleKeyDown = e => {
+    if (e.keyCode === 13) {
+      //user has pressed enter
+      fetchResults(searchVal);
+    }
+  };
   return (
     <div className="search__container">
       <input
@@ -21,14 +28,13 @@ const SearchInput = ({ srchString, fetchResults, isFetching }) => {
         onChange={handleInputChange}
         type="text"
         placeholder="Search an Artist, Album or Song"
+        onKeyUp={handleKeyDown}
       />
       <button className="search__submit" onClick={handleClick}>
         {isFetching ? <Spinner white /> : "Search"}
       </button>
     </div>
   );
-
-  // return <div>working till here</div>;
 };
 
 export default SearchInput;

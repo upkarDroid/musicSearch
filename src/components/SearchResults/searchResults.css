@@ -20,9 +20,9 @@
 }
 
 .item__info {
-  width: 150px;
-  height: 150px;
-  min-width: 150px;
+  width: 100px;
+  height: 100px;
+  min-width: 100px;
   border-radius: 6px;
   background-size: cover;
   position: relative;
@@ -52,6 +52,7 @@
   padding: 10px 20px;
   flex-direction: column;
   flex-grow: 1;
+  text-align: left;
 }
 
 .item__meta--artist {
