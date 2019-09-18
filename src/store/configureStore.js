@@ -1,4 +1,3 @@
-import React from "react";
 import { applyMiddleware, createStore, compose } from "redux";
 import thunk from "redux-thunk";
 import mainReducer from "../reducers";
