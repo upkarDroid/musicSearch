@@ -3,35 +3,23 @@ import NoResultFound from "./NoResultFound";
 import ResultItem from "./ResultItem";
 import Spinner from "../Spinner";
 import InfiniteScroll from "react-infinite-scroller";
+import { RESULTS_PER_PAGE } from "../../constants";
 
 import debounce from "lodash/debounce";
 import "./searchResults.css";
 
-const SearchResults = ({
-  allResults,
-  isFetching,
-  error = false,
-  paginatedResults
-}) => {
-  const { displayItems = [] } = paginatedResults;
+const SearchResults = ({ allResults, isFetching, error = false }) => {
   const [resultsToShow, setresultsToShow] = useState([]);
   const [pageNo, setPageNo] = useState(0);
 
-  // currently we are displaying first 10 results out of 200
-  //TODO:: implement pagination locally, as API does not support pagination
-  const renderedResults = !error ? (
-    resultsToShow.map((result, index) => (
-      <ResultItem result={result} key={`${result.collectionId}${index}`} />
-    ))
-  ) : (
-    <NoResultFound />
-  );
+  const renderedResults = resultsToShow.map((result, index) => (
+    <ResultItem result={result} key={`${result.collectionId}${index}`} />
+  ));
 
   useEffect(() => {
+    //reset everything when search results change
     setPageNo(0);
-    setresultsToShow(
-      allResults[0] ? allResults.slice(0, pageNo ? 10 * pageNo : 10) : []
-    );
+    setresultsToShow(allResults.length ? allResults.slice(0, 9) : []);
   }, [allResults]);
 
   const loader = (
@@ -41,13 +29,17 @@ const SearchResults = ({
   );
 
   const loadMore = () => {
-    setresultsToShow(allResults.slice(0, pageNo ? 10 * pageNo : 9));
+    setresultsToShow(
+      allResults.slice(
+        0,
+        pageNo ? RESULTS_PER_PAGE * pageNo : RESULTS_PER_PAGE - 1
+      )
+    );
     setPageNo(pageNo + 1);
   };
-  return (
-    // <div className="resultsContainer">
+  return !error ? (
     <InfiniteScroll
-      pageStart={2}
+      pageStart={0}
       threshold={1000}
       loadMore={debounce(loadMore, 500)}
       hasMore={resultsToShow.length < allResults.length}
@@ -56,17 +48,8 @@ const SearchResults = ({
     >
       {renderedResults}
     </InfiniteScroll>
-    // </div>
-
-    // <div className="resultContainer">
-    //   {isFetching ? (
-    //     <div className="spinner-wrapper">
-    //       <Spinner />
-    //     </div>
-    //   ) : (
-    //     renderedResults
-    //   )}
-    // </div>
+  ) : (
+    <NoResultFound />
   );
 };
 
