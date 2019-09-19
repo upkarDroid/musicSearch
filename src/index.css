@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
 }
 
 code {
@@ -12,4 +13,12 @@ code {
     monospace;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: rgb(237, 90, 107);
+}
 /* END:: Loading spinner CSS */

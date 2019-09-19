@@ -48,16 +48,10 @@ button {
 
 .search__input {
   flex-grow: 1;
-  /* width: 80%; */
-  height: 24px;
-  /* padding: 7px; */
-  padding: 8px;
+  height: 44px;
+  padding: 0 10px;
   font-size: 16px;
   font-weight: 500;
   color: rgb(237, 90, 107);
   outline: none !important;
-  /* border-top-left-radius: 6px;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 6px; */
 }
