@@ -1,4 +1,4 @@
-.resultContainer {
+.results-container {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -58,4 +58,13 @@
 .item__meta--artist {
   font-size: 12px;
   color: #1c1c1c;
+}
+
+.spinner-wrapper {
+  padding: 10px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
 }
