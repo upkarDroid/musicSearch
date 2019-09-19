@@ -32,7 +32,7 @@ const ResultItem = ({ result }) => {
           className="item__meta--name"
           target="_blank"
         >
-          {result.collectionName}
+          {result.trackName}
         </a>
         <a
           href={result.artistViewUrl}
