@@ -15,7 +15,7 @@ const msToTime = duration => {
 console.log(msToTime(300000));
 const ResultItem = ({ result }) => {
   return (
-    <a className="item__container">
+    <div className="item__container">
       <a
         href={result.collectionViewUrl}
         className="item__info"
@@ -45,7 +45,7 @@ const ResultItem = ({ result }) => {
           {msToTime(result.trackTimeMillis)}
         </div>
       </div>
-    </a>
+    </div>
   );
 };
 
